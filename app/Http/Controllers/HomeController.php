@@ -25,16 +25,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = \Auth::user();
-        $memos = Memo::where('user_id', $user['id'])->where('status', 1)->orderby('updated_at', 'DESC')->get();
-        return view('create', compact('user', 'memos'));
+        return view('create');
     }
 
     public function create()
     {
-        $user = \Auth::user();
-        $memos = Memo::where('user_id', $user['id'])->where('status', 1)->orderby('updated_at', 'DESC')->get();
-        return view('create', compact('user', 'memos'));
+        return view('create');
     }
 
     public function store(Request $request)
@@ -68,9 +64,7 @@ class HomeController extends Controller
     {
         $user = \Auth::user();
         $memo = Memo::where('status', 1)->where('id', $id)->where('user_id', $user['id'])->first();
-        $memos = Memo::where('user_id', $user['id'])->where('status', 1)->orderby('updated_at', 'DESC')->get();
-        $tags = Tag::where('user_id', $user['id'])->get();
-        return view('edit', compact('user', 'memo' ,'memos', 'tags'));
+        return view('edit', compact('memo'));
     }
 
     public function update(Request $request, $id)
