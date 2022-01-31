@@ -28,36 +28,26 @@ class HomeController extends Controller
         return Memo::all();
     }
 
-    public function create()
-    {
-        return view('create');
-    }
-
     public function store(Request $request)
     {
-        $data = $request->all();
+        return Memo::create($request->all());
+        // $data = $request->all();
 
-        $exist_tag = Tag::where('name',$data['tag'])->where('user_id',$data['user_id'])->first();
-        if(empty($exist_tag['id'])){
-            $tag_id = Tag::insertGetId(['name' => $data['tag'], 'user_id' => $data['user_id']]);
-        } else {
-            $tag_id = $exist_tag['id'];
-        }
-        //dd($exist_tag);
+        // $exist_tag = Tag::where('name',$data['tag'])->where('user_id',$data['user_id'])->first();
+        // if(empty($exist_tag['id'])){
+        //     $tag_id = Tag::insertGetId(['name' => $data['tag'], 'user_id' => $data['user_id']]);
+        // } else {
+        //     $tag_id = $exist_tag['id'];
+        // }
 
-        //dd($tag_id);
-        // POSTされたデータをDB（memosテーブル）に挿入
-        // MEMOモデルにDBへ保存する命令を出す
+        // Memo::insert([
+        //     'content' => $data['content'],
+        //      'user_id' => $data['user_id'],
+        //      'tag_id' => $tag_id,
+        //      'status' => 1
+        // ]);
 
-        Memo::insert([
-            'content' => $data['content'],
-             'user_id' => $data['user_id'],
-             'tag_id' => $tag_id,
-             'status' => 1
-        ]);
-
-        // リダイレクト処理
-        return redirect()->route('home');
+        // return redirect()->route('home');
     }
 
     public function edit($id)

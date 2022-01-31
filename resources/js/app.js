@@ -1,6 +1,8 @@
 import VueRouter from 'vue-router';
 import HeaderComponent from './components/HeaderComponent';
 import ListComponent from './components/ListComponent';
+import MemoCreateComponent from './components/MemoCreateComponent';
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -17,9 +19,14 @@ const router = new VueRouter({
   mode: 'history',
   routes: [
     {
-      path: '/memos',
+      path: '/',
       name: 'memo.list',
       component: ListComponent,
+    },
+    {
+      path: '/memos',
+      name: 'memo.create',
+      component: MemoCreateComponent,
     },
   ],
 });
@@ -39,6 +46,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 Vue.component('header-component', HeaderComponent);
 Vue.component('list-component', ListComponent);
+Vue.component('memo-create-component', MemoCreateComponent);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

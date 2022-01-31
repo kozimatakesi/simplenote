@@ -115,8 +115,7 @@
           </div> <!-- row justify-content-center -->
         </main> --}}
         <header-component></header-component>
-        <list-component></list-component>
-        <example-component></example-component>
+        <router-view></router-view>
     </div>
     @yield('footer')
 </body>
