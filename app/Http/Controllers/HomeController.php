@@ -49,7 +49,7 @@ class HomeController extends Controller
         // POSTされたデータをDB（memosテーブル）に挿入
         // MEMOモデルにDBへ保存する命令を出す
 
-        $memo_id = Memo::insertGetId([
+        Memo::insert([
             'content' => $data['content'],
              'user_id' => $data['user_id'],
              'tag_id' => $tag_id,
@@ -82,5 +82,11 @@ class HomeController extends Controller
         Memo::where('id', $id)->update(['status' => 2]);
         return redirect()->route('home')->with('success', 'メモの削除が完了しました');
     }
+
+    public function mypage()
+    {
+        return view('mypage');
+    }
+
 
 }
